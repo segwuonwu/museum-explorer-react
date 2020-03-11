@@ -11,11 +11,9 @@ db.Museum.create({
   db.Piece.create({
     name: 'Mona Lisa',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/1024px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg',
-    originCountry: 'Italy',
     museum: result._id,
     creator: {
-      firstname: 'Leonardo',
-      lastname: 'da Vinci',
+      name: 'Leonardo da Vinci',
       image: 'http://www.leonardodavinci.net/images/leonardo-da-vinci.jpg',
       birthyear: 1452,
       deathyear: 1519
