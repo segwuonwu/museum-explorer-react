@@ -9,8 +9,12 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+  // Remove any keys that have no value
+  Object.keys(req.body).forEach((key) => (req.body[key] == '') && delete req.body[key]);
+
   db.Museum.create(req.body)
   .then(museum => res.send(museum))
+  .catch(err=>res.send({ message: 'Error in creating one museum', err}));
 })
 
 router.get('/:id', (req, res) => {
