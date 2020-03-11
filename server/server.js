@@ -13,7 +13,7 @@ app.use('/pieces', require('./routes/pieces'));
 
 // Make 404 route
 app.get('/', (req, res) => {
-  res.json('error', 'page not found');
+  res.send({'error': 'page not found'});
 });
 
 // Listen
