@@ -18,27 +18,27 @@ router.get('/', (req, res) => {
   
 //Take form data to add a new piece (remember to add museum and creator!)
 router.post('/', (req, res) => {
-    console.log(req.body);
-    db.Piece.create({
-        name: req.body.name,
-        country: req.body.country,
-        city: req.body.city,
-        image: req.body.image,
-        museum: req.body.museumId,
+    let newPiece = {
+        name: req.body.pName,
+        image: req.body.pImage,
+        museum: req.body.museum,
         creator: {
             name: req.body.name,
             image: req.body.creatorImage,
             birthyear: req.body.creatorBirth,
             deathyear: req.body.creatorDeath
         }
-    })
-    .then(result => {
-        console.log('New piece successfully created');
-        res.redirect('/pieces');
+    }
+
+    Object.keys(newPiece).forEach(key => (newPiece[key] == '') && delete newPiece[key]);
+    Object.keys(newPiece.creator).forEach(key => (newPiece.creator[key] == '') && delete newPiece.creator[key]);
+    db.Piece.create(newPiece)
+    .then(piece => {
+        res.send(piece);
     })
     .catch(err => {
         console.log('Error Message', err);
-        res.send('An error occured');
+        res.send({message :'An error occured', err});
     });
   });
   

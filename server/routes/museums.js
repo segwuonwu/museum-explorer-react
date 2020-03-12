@@ -12,9 +12,11 @@ router.get('/', (req, res) => {
 
 //Take form data and use it to add new museum
 router.post('/', (req, res) => {
+    // Remove any key that have no value
+    Object.keys(req.body).forEach(key => (req.body[key] == '') && delete req.body[key]);
     db.Museum.create(req.body)
         .then(museum => {
-            res.redirect(`${museum.id}`);
+            res.send(museum);
     }).catch(err => res.send({message: 'Error in creating mesuem', err}))
 })
 
