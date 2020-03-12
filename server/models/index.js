@@ -3,12 +3,14 @@ const mongoose = require('mongoose');
 // Connect to Mongo database
 mongoose.connect(
   process.env.MONGO_URL || 'mongodb://localhost:27017/museumexplorer',
-  { useNewUrlParser: true }
+  { useNewUrlParser: true, useFindAndModify: true, useCreateIndex: true }
 );
+
 let db = mongoose.connection;
 db.once('open', () => {
   console.log(`🔗 Connected to MongoDB on ${db.host}: ${db.port}`);
 });
+
 db.on('error', err => {
   console.log(`🐻 Bad news bears! MongoDB error:\n${err}`);
 });

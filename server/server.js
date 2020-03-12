@@ -1,5 +1,6 @@
 // Require needed node modules
 const express = require('express');
+const cors = require('cors')
 
 // Create an instance of express
 const app = express();
