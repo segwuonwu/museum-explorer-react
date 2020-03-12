@@ -8,7 +8,6 @@ router.get('/', (req, res) => {
     .populate('museum')
         .then(pieces => {
         res.send(pieces)
-    //   res.render('pieces/index', { pieces: pieces });
     })
     .catch(err => {
         console.log('Error in GET /pieces route:', err);
@@ -24,9 +23,9 @@ router.post('/', (req, res) => {
         museum: req.body.museum,
         creator: {
             name: req.body.name,
-            image: req.body.creatorImage,
-            birthyear: req.body.creatorBirth,
-            deathyear: req.body.creatorDeath
+            image: req.body.image,
+            birthYear: req.body.birthyear,
+            deathYear: req.body.deathyear
         }
     }
 

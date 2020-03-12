@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
 
 //Take form data and use it to add new museum
 router.post('/', (req, res) => {
+    console.log(req.body)
     // Remove any key that have no value
     Object.keys(req.body).forEach(key => (req.body[key] == '') && delete req.body[key]);
     db.Museum.create(req.body)
